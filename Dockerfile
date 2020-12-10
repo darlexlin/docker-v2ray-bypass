@@ -8,7 +8,7 @@ WORKDIR /v2ray
 
 RUN apt-get update -y && \
     apt-get install -y wget tzdata iptables && \
-    bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) && \
+    bash <(wget https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) && \
     apt-get update -y && \
     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf && sysctl -p && \
