@@ -21,12 +21,12 @@ WORKDIR /etc/v2ray
 
 COPY start.sh /start.sh
 
-RUN groupadd -r -g $PGID v2ray && \
-    useradd -m -g $PGID -u $PUID v2ray && \
-    chown v2ray:v2ray /etc/v2ray -R && \
-    chmod +x /start.sh
+#RUN groupadd -r -g $PGID v2ray && \
+#    useradd -m -g $PGID -u $PUID v2ray && \
+#    chown v2ray:v2ray /etc/v2ray -R && \
+#    chmod +x /start.sh
 
-USER v2ray
+#USER v2ray
 
 VOLUME /etc/v2ray
 
