@@ -7,10 +7,12 @@ ENV TZ Asia/Shanghai
 WORKDIR /v2ray
 
 RUN apt-get update -y && \
-    apt-get install -y wget tzdata iptables && \
-    wget https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh && \
-    bash install-release.sh && \
-    apt-get update -y && \
+    apt-get install -y wget tzdata iptables
+    
+RUN wget https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh && \
+    bash install-release.sh
+    
+RUN apt-get update -y && \
     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf && sysctl -p && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
