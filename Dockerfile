@@ -7,7 +7,7 @@ ENV TZ Asia/Shanghai
 COPY v2ray.sh /root/v2ray.sh
 
 RUN apt-get update -y && \
-    apt-get install -y wget tzdata iptables openssl ca-certificates unzip && \
+    apt-get install -y wget tzdata iptables openssl ca-certificates && \
     mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray && \
     chmod +x /root/v2ray.sh && \
     /root/v2ray.sh && \
@@ -30,4 +30,4 @@ COPY start.sh /start.sh
 
 VOLUME /etc/v2ray
 
-CMD [ "/usr/bin/v2ray", "-config", "/etc/v2ray/config.json", "./start.sh" ]
+CMD ["./start.sh"]
