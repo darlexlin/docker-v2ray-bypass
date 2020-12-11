@@ -4,16 +4,16 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PUID=1000 PGID=1000
 ENV TZ Asia/Shanghai
 
-WORKDIR /v2ray
+WORKDIR /etc/v2ray
 
-COPY install-release.sh /install-release.sh
-
-RUN apt-get update -y && \
-    apt-get install -y wget tzdata iptables
-
-RUN /install-release.sh
+COPY v2ray.sh /root/v2ray.sh
 
 RUN apt-get update -y && \
+    apt-get install -y wget tzdata iptables openssl ca-certificates && \
+    mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray && \
+    chmod +x /root/v2ray.sh && \
+    /root/v2ray.sh && \
+    apt-get update -y && \
     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf && sysctl -p && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
@@ -23,6 +23,6 @@ COPY start.sh /start.sh
 
 USER v2ray
 
-VOLUME /v2ray
+VOLUME /etc/v2ray
 
 CMD ["./start.sh"]
