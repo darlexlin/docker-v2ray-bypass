@@ -18,11 +18,7 @@ RUN apt-get update -y && \
     echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf && sysctl -p && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get clean
-    
-COPY start.sh /start.sh
-
-#USER v2ray
 
 VOLUME /etc/v2ray
 
-CMD [ "/usr/bin/v2ray", "-config", "/etc/v2ray/config.json", "./start.sh" ]
+CMD [ "/usr/bin/v2ray", "-config", "/etc/v2ray/config.json" ]
