@@ -4,8 +4,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PUID=1000 PGID=1000
 ENV TZ Asia/Shanghai
 
-WORKDIR /etc/v2ray
-
 COPY v2ray.sh /root/v2ray.sh
 
 RUN apt-get update -y && \
@@ -18,8 +16,15 @@ RUN apt-get update -y && \
     echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf && sysctl -p && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get clean
-    
+
+WORKDIR /etc/v2ray
+
 COPY start.sh /start.sh
+
+RUN groupadd -r -g $PGID v2ray && \
+    useradd -m -g $PGID -u $PUID v2ray && \
+    chown v2ray:v2ray /etc/v2ray -R && \
+    chmod +x /start.sh
 
 USER v2ray
 
