@@ -21,7 +21,7 @@ RUN apt-get update -y && \
     
 COPY start.sh /start.sh
 
-USER v2ray
+#USER v2ray
 
 VOLUME /etc/v2ray
 
