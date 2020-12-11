@@ -9,8 +9,9 @@ WORKDIR /v2ray
 COPY install-release.sh /install-release.sh
 
 RUN apt-get update -y && \
-    apt-get install -y wget tzdata iptables && \
-    /install-release.sh
+    apt-get install -y wget tzdata iptables
+
+RUN /install-release.sh
 
 RUN apt-get update -y && \
     ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
