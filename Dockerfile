@@ -19,6 +19,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get clean
 
+COPY config.json /etc/v2ray/config.json
+
 VOLUME /etc/v2ray
 
 CMD [ "/usr/bin/v2ray", "-config", "/etc/v2ray/config.json" ]
