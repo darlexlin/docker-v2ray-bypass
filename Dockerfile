@@ -22,6 +22,8 @@ RUN apt-get update -y && \
 COPY config.json /etc/v2ray/config.json
 COPY start.sh /root/start.sh
 
+RUN chmod +x /root/start.sh
+
 VOLUME /etc/v2ray
 
 CMD ["/root/start.sh"]
