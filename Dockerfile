@@ -20,8 +20,8 @@ RUN apt-get update -y && \
     apt-get clean
     
 COPY config.json /etc/v2ray/config.json
-COPY start.sh ./start.sh
+COPY start.sh /root/start.sh
 
 VOLUME /etc/v2ray
 
-CMD ["./start.sh"]
+CMD ["/root/start.sh"]
