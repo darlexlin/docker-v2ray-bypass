@@ -8,7 +8,7 @@ COPY v2ray.sh /root/v2ray.sh
 
 RUN apt-get update -y && \
     apt-get install -y wget tzdata iptables openssl ca-certificates unzip iproute2 iproute2-doc && \
-    mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray /v2ray && \
+    mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray /v2 && \
     chmod +x /root/v2ray.sh && \
     /root/v2ray.sh && \
     apt-get update -y && \
@@ -17,7 +17,7 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     apt-get clean
 
-WORKDIR /v2ray
+WORKDIR /v2
 
 COPY config.json /etc/v2ray/config.json
 COPY start.sh ./start.sh
