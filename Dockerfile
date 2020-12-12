@@ -9,7 +9,7 @@ WORKDIR /etc/v2ray
 COPY v2ray.sh /root/v2ray.sh
 
 RUN apt-get update -y && \
-    apt-get install -y wget tzdata iptables openssl ca-certificates unzip && \
+    apt-get install -y wget tzdata iptables openssl ca-certificates unzip iproute iproute-doc && \
     mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray && \
     chmod +x /root/v2ray.sh && \
     /root/v2ray.sh && \
