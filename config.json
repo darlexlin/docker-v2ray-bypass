@@ -17,14 +17,14 @@
       },
       "streamSettings": {
         "sockopt": {
-          "tproxy": "tproxy", // Í¸Ã÷´úÀíÊ¹ÓÃ TPROXY ·½Ê½
+          "tproxy": "tproxy", // é€æ˜ä»£ç†ä½¿ç”¨ TPROXY æ–¹å¼
           "mark":255
         }
       }
     },
     {
       "port": 1080, 
-      "protocol": "socks", // Èë¿ÚĞ­ÒéÎª SOCKS 5
+      "protocol": "socks", // å…¥å£åè®®ä¸º SOCKS 5
       "sniffing": {
         "enabled": true,
         "destOverride": ["http", "tls"]
@@ -37,15 +37,15 @@
   "outbounds": [
     {
       "tag": "proxy",
-      "protocol": "vless", // ´úÀí·şÎñÆ÷
+      "protocol": "vless", // ä»£ç†æœåŠ¡å™¨
       "settings": {
         "vnext": [
           {
-            "address": "cloudflare.com",
+            "address": "****", //æœåŠ¡å™¨åœ°å€
             "port": 443,
             "users": [
               {
-                "id": "d4817cf7-10d0-4bfa-9e11-35049b90ad60",
+                "id": "****", //UUID
                 "alterId": 0,
                 "email": "t@t.tt",
                 "security": "auto",
@@ -99,32 +99,32 @@
   "dns": {
     "servers": [
       {
-        "address": "223.5.5.5", //ÖĞ¹ú´óÂ½ÓòÃûÊ¹ÓÃ°¢ÀïµÄ DNS
+        "address": "223.5.5.5", //ä¸­å›½å¤§é™†åŸŸåä½¿ç”¨é˜¿é‡Œçš„ DNS
         "port": 53,
         "domains": [
           "geosite:cn",
-          "ntp.org",   // NTP ·şÎñÆ÷
-          "$myserver.address" // ´Ë´¦¸ÄÎªÄã VPS µÄÓòÃû
+          "ntp.org",   // NTP æœåŠ¡å™¨
+          "$myserver.address" // æ­¤å¤„æ”¹ä¸ºä½  VPS çš„åŸŸå
         ]
       },
       {
-        "address": "114.114.114.114", //ÖĞ¹ú´óÂ½ÓòÃûÊ¹ÓÃ 114 µÄ DNS (±¸ÓÃ)
+        "address": "114.114.114.114", //ä¸­å›½å¤§é™†åŸŸåä½¿ç”¨ 114 çš„ DNS (å¤‡ç”¨)
         "port": 53,
         "domains": [
           "geosite:cn",
-          "ntp.org",   // NTP ·şÎñÆ÷
-          "$myserver.address" // ´Ë´¦¸ÄÎªÄã VPS µÄÓòÃû
+          "ntp.org",   // NTP æœåŠ¡å™¨
+          "$myserver.address" // æ­¤å¤„æ”¹ä¸ºä½  VPS çš„åŸŸå
         ]
       },
       {
-        "address": "8.8.8.8", //·ÇÖĞ¹ú´óÂ½ÓòÃûÊ¹ÓÃ Google µÄ DNS
+        "address": "8.8.8.8", //éä¸­å›½å¤§é™†åŸŸåä½¿ç”¨ Google çš„ DNS
         "port": 53,
         "domains": [
           "geosite:geolocation-!cn"
         ]
       },
       {
-        "address": "1.1.1.1", //·ÇÖĞ¹ú´óÂ½ÓòÃûÊ¹ÓÃ Cloudflare µÄ DNS
+        "address": "1.1.1.1", //éä¸­å›½å¤§é™†åŸŸåä½¿ç”¨ Cloudflare çš„ DNS
         "port": 53,
         "domains": [
           "geosite:geolocation-!cn"
@@ -135,7 +135,7 @@
   "routing": {
     "domainStrategy": "IPOnDemand",
     "rules": [
-      { // ½Ù³Ö 53 ¶Ë¿Ú UDP Á÷Á¿£¬Ê¹ÓÃ V2Ray µÄ DNS
+      { // åŠ«æŒ 53 ç«¯å£ UDP æµé‡ï¼Œä½¿ç”¨ V2Ray çš„ DNS
         "type": "field",
         "inboundTag": [
           "transparent"
@@ -144,7 +144,7 @@
         "network": "udp",
         "outboundTag": "dns-out" 
       },    
-      { // Ö±Á¬ 123 ¶Ë¿Ú UDP Á÷Á¿£¨NTP Ğ­Òé£©
+      { // ç›´è¿ 123 ç«¯å£ UDP æµé‡ï¼ˆNTP åè®®ï¼‰
         "type": "field",
         "inboundTag": [
           "transparent"
@@ -156,7 +156,7 @@
       {
         "type": "field", 
         "ip": [ 
-          // ÉèÖÃ DNS ÅäÖÃÖĞµÄ¹úÄÚ DNS ·şÎñÆ÷µØÖ·Ö±Á¬£¬ÒÔ´ïµ½ DNS ·ÖÁ÷Ä¿µÄ
+          // è®¾ç½® DNS é…ç½®ä¸­çš„å›½å†… DNS æœåŠ¡å™¨åœ°å€ç›´è¿ï¼Œä»¥è¾¾åˆ° DNS åˆ†æµç›®çš„
           "223.5.5.5",
           "114.114.114.114"
         ],
@@ -165,25 +165,25 @@
       {
         "type": "field",
         "ip": [ 
-          // ÉèÖÃ DNS ÅäÖÃÖĞµÄ¹úÍâ DNS ·şÎñÆ÷µØÖ·×ß´úÀí£¬ÒÔ´ïµ½ DNS ·ÖÁ÷Ä¿µÄ
+          // è®¾ç½® DNS é…ç½®ä¸­çš„å›½å¤– DNS æœåŠ¡å™¨åœ°å€èµ°ä»£ç†ï¼Œä»¥è¾¾åˆ° DNS åˆ†æµç›®çš„
           "8.8.8.8",
           "1.1.1.1"
         ],
-        "outboundTag": "proxy" // ¸ÄÎªÄã×Ô¼º´úÀíµÄ³öÕ¾ tag
+        "outboundTag": "proxy" // æ”¹ä¸ºä½ è‡ªå·±ä»£ç†çš„å‡ºç«™ tag
       },
-      { // ¹ã¸æÀ¹½Ø
+      { // å¹¿å‘Šæ‹¦æˆª
         "type": "field", 
         "domain": [
           "geosite:category-ads-all"
         ],
         "outboundTag": "block"
       },
-      { // BT Á÷Á¿Ö±Á¬
+      { // BT æµé‡ç›´è¿
         "type": "field",
         "protocol":["bittorrent"], 
         "outboundTag": "direct"
       },
-      { // Ö±Á¬ÖĞ¹ú´óÂ½Ö÷Á÷ÍøÕ¾ ip ºÍ ±£Áô ip
+      { // ç›´è¿ä¸­å›½å¤§é™†ä¸»æµç½‘ç«™ ip å’Œ ä¿ç•™ ip
         "type": "field", 
         "ip": [
           "geoip:private",
@@ -191,7 +191,7 @@
         ],
         "outboundTag": "direct"
       },
-      { // Ö±Á¬ÖĞ¹ú´óÂ½Ö÷Á÷ÍøÕ¾ÓòÃû
+      { // ç›´è¿ä¸­å›½å¤§é™†ä¸»æµç½‘ç«™åŸŸå
         "type": "field", 
         "domain": [
           "geosite:cn"
